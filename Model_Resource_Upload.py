@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 import json
 from hs_restclient import HydroShare, HydroShareAuthBasic
 import bs4
@@ -57,14 +56,15 @@ for model in models:
 
     # TODO: what are the json fields that I can write metadata to?
     # TODO: Get the model manuals off of CSDMS and put them on Hydroshare
-    meta = [{"MpMetadata": {
+    meta = [{"mpmetadata": {
         "modelProgramLanguage": machinegendata["Programming language"]
     }}]
 
     resource_id = hs.createResource("ModelProgramResource",
                                     title=machinegendata['Title'],
                                     abstract=machinegendata['Extended model description'],
-                                    metadata=json.dumps(meta))
-                                    #keywords=[machinegendata['Keywords:']])
+                                    metadata=json.dumps(meta),
+                                    keywords=[machinegendata['Keywords:']])
+    print resource_id
 
     break #test on Anuga only
