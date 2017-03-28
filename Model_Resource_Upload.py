@@ -15,6 +15,11 @@ names = soup.select('td > a')
 # selecting all of the abstracts (<small> tag)
 blurbs = soup.select('td > small')
 
+auth = HydroShareAuthBasic(username='emorgan117', password='h#nX^d-WR9cC')
+hs = HydroShare(auth=auth)
+
+
+
 models = []     # each element in models has: [0]: model name, [1]: model's CSDMS page, [2]: model's blurb
 item = []
 
@@ -25,7 +30,7 @@ for element in names:  # getting the metadata webpage and title for each model
     models.append(item)
 
 # gets the blurb for each model
-# replace E-book: with '' because on some model blurbs, it puts E-book: for some reason
+# replace E-book: with '' because on some model blurbs, it puts 'E-book:' for some reason
 for element in blurbs:
     models[blurbs.index(element)].append(element.string.replace('E-book: ', ''))
 
@@ -76,8 +81,7 @@ for model in models:
 
     # This is the second part of the program--taking the data contained in
     # machinegendata and uploading it to Hydroshare
-    auth = HydroShareAuthBasic(username='emorgan117', password='Fx46C7#g2')
-    hs = HydroShare(auth=auth)
+
     name = machinegendata['First name'] + ' ' + machinegendata['Last name']
     address = machinegendata['Postal address 1'] + ' ' + \
       machinegendata['Town / City'] + ' ' + machinegendata['State'] \
