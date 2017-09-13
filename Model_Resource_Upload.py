@@ -15,7 +15,7 @@ names = soup.select('td > a')
 # selecting all of the abstracts (<small> tag)
 blurbs = soup.select('td > small')
 
-auth = HydroShareAuthBasic(username='emorgan117', password='h#nX^d-WR9cC')
+auth = HydroShareAuthBasic(username='xxxxxxx', password='xxxxxxxxxxx')
 hs = HydroShare(auth=auth)
 
 
